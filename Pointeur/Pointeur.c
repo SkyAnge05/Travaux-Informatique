@@ -17,9 +17,9 @@ int main() {
 
     printf("\nAprès la modification :\n");
 
-    printf("L'adresse de \"nombre\" est 0x%p.\n", (void *)&nombre);
+    printf("L'adresse de \"nombre\" est 0x%p.\n", &nombre);
     printf("La valeur de \"nombre\" est %d.\n", nombre);
-    printf("La valeur de \"ptr_nombre\" est 0x%p.\n", (void *)ptr_nombre);
+    printf("La valeur de \"ptr_nombre\" est 0x%p.\n", ptr_nombre);
 
     return 0;
 }
