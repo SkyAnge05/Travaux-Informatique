@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1740744410 source:c:\users\admin\onedrive\desktop\info en c\labo_fonction\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
