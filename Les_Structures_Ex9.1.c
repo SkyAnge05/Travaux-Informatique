@@ -8,46 +8,51 @@ struct panneau{
     int largeur;
     int epaisseur;
     int code;
-    
+};
+//struct panneau p1;
 
-}p;
+struct panneau saisie();
+void affichage(struct panneau pAff);
 
-int main (){
- void saisie();
- void affichage();
+int main() {
+    setlocale(LC_ALL, "fr_FR");
 
-setLocale(LC_ALL, "");
 
+    struct panneau p;
+    p = saisie();
+    affichage(p);
+
+    return 0;
 }
-void saisie(){
-  
-    printf("\nDéfinisser la hauter de votre planche: ");
+
+struct panneau saisie(){
+
+    struct panneau p1;
+    printf("Bonjour, bienvenue dans le programme de calcul de volume de planche de bois\n");
+    printf("Veuillez entrer les dimensions de votre planche de bois\n");
+    printf("\nDéfinissez la hauteur de votre planche: ");
     scanf("%d", &p1.hauteur );
 
-    printf(":\nDéfinisser la largeur de votre de planche : ");
-    scanf("%d", p1.largeur);
+    printf("\nDéfinissez la largeur de votre planche : ");
+    scanf("%d", &p1.largeur);
 
-    printf("\nDéfinisser l'épaisseur de votre planche de bois : ");
+    printf("\nDéfinissez l'épaisseur de votre planche de bois : ");
     scanf("%d", &p1.epaisseur);
 
+    return p1;
 }
 
-void affichage(){
+void affichage(struct panneau pAff){
 
-    printf("\n Voici les dimmension de votre planche de ........\n");
-    printf("\n\n La hauteur est de : %d ", p1.hauteur);
-    printf("\n\n La largeur est de : %d ", p1.largeur);
-    printf("\n\n La l'épaisseur est de : %d ", p1.epaisseur);
+    printf("\nVoici les dimensions de votre planche :\n");
+    printf("\n\n La hauteur est de : %d ", pAff.hauteur);
+    printf("\n\n La largeur est de : %d ", pAff.largeur);
+    printf("\n\n L'épaisseur est de : %d ", pAff.epaisseur);
 
     int volume;
-    volume= 1000*(p1.hauteur*p1.largeur*p1.epaisseur);
+    volume= 1000*(pAff.hauteur*pAff.largeur*pAff.epaisseur);
 
-    
+
     printf("En tout, le volume de votre planche est de : %d  mètre cube ", volume);
-
-
-
-
-
 
 }
