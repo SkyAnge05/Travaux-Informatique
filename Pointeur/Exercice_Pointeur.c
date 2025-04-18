@@ -33,7 +33,4 @@ int echange(int *nombre1, int *nombre2){
     int temp = *nombre1;// il prend la valeur de la variable pointée
     *nombre1 = *nombre2;
     *nombre2 = temp;   
-   
-    
-
 }
