@@ -7,17 +7,12 @@ int main() {
     setlocale(LC_ALL, "");
 
     int R;
-    float L, C, resultat;
+    float L, C;
 
     // Appel de la fonction de saisie
     saisie(&R, &L, &C);
 
-    // Calcul de la fréquence de résonance
-    Calc(&L, &C, &resultat);
-
-    // Affichage des résultats
-    affichage(&R, &L, &C);
-    printf("\nLa fréquence de résonance est : %.2f Hz\n", resultat);
+    printf("\nValeurs saisies : R = %d, L = %.2f, C = %.2f\n", R, L, C);
 
     return 0;
 }
