@@ -1,12 +1,15 @@
 # depslib dependency file v1.0
-1745572360 source:c:\users\natha\onedrive\bureau\teste c\exmulti_fichier\calc.c
+1745575923 source:c:\users\natha\onedrive\bureau\teste c\exmulti_fichier\calc.c
 	"Calc.h"
+	<math.h>
 
-1745571421 c:\users\natha\onedrive\bureau\teste c\exmulti_fichier\calc.h
+1745575393 c:\users\natha\onedrive\bureau\teste c\exmulti_fichier\calc.h
 
-1745573525 source:c:\users\natha\onedrive\bureau\teste c\exmulti_fichier\main.c
+1745576369 source:c:\users\natha\onedrive\bureau\teste c\exmulti_fichier\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	<math.h>
+
+1745576511 source:c:\users\natha\onedrive\bureau\teste c\exmulti_fichier\saisie.c
 

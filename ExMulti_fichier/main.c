@@ -6,19 +6,15 @@
 int main()
 {
 int R;
-int L;
-int C;
+float L;
+float C;
+
 setlocale(LC_ALL, "");
 
-affichage();
-  printf("\nVoici les valeurs rentrées R= %d, L= %d, C= %d  \n",R, L, C);
+float saisie();
 
-  printf("\nLa fréquence de résonance est :%2f Hz\n ", Calc(R, L, C));
+float Calc(L, C);
 
-
-
-
-
-
+  printf("\n La fréquence de résonance est : %2f Hz\n ", Calc(L, C));
 
 }

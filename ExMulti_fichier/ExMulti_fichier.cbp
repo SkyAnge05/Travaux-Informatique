@@ -31,7 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Calc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Calc.h" />
 		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="saisie.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
