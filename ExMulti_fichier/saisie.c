@@ -1,17 +1,14 @@
+#include <stdio.h>
 #include "Calc.h"
-float saisie()
-{
-        int *R;
-        float *L;
-        float *C;
 
-    printf("Rentrer les veleurs de R ");
-    scanf("%d",&R);
-    printf("\nRentrer les veleurs de L en mH ");
-    scanf("%f",&L);
-    printf("\nRentrer les veleurs de  C en µF ");
-    scanf("%f",&C);
+// Fonction de saisie utilisant des pointeurs
+void saisie(int *R, float *L, float *C) {
+    printf("Entrez la valeur de R (résistance en ohms) : ");
+    scanf("%d", R);
 
-    printf("\nVoici les valeurs rentrées R= %d, L= %d, C= %d  \n",R, L, C);
+    printf("Entrez la valeur de L (inductance en Henry) : ");
+    scanf("%f", L);
+
+    printf("Entrez la valeur de C (capacité en Farad) : ");
+    scanf("%f", C);
 }
-

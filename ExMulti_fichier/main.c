@@ -1,20 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include <math.h>
+#include "Calc.h"
 
-int main()
-{
-int R;
-float L;
-float C;
+int main() {
+    setlocale(LC_ALL, "");
 
-setlocale(LC_ALL, "");
+    int R;
+    float L, C, resultat;
 
-float saisie();
+    // Appel de la fonction de saisie
+    saisie(&R, &L, &C);
 
-float Calc(L, C);
+    // Calcul de la fréquence de résonance
+    Calc(&L, &C, &resultat);
 
-  printf("\n La fr�quence de r�sonance est : %2f Hz\n ", Calc(L, C));
+    // Affichage des résultats
+    affichage(&R, &L, &C);
+    printf("\nLa fréquence de résonance est : %.2f Hz\n", resultat);
 
+    return 0;
 }

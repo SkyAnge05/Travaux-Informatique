@@ -1,14 +1,7 @@
-#include "Calc.h"
 #include <math.h>
+#include "Calc.h"
 
-
-
-float Calc(float L, float C)
-{
-float calcul;
-
-calcul = 1/(2*3.14159*(sqrt(L*C)));
-printf("%2f", calcul);
-
-return calcul;
+// Fonction de calcul utilisant des pointeurs
+void Calc(float *L, float *C, float *resultat) {
+    *resultat = 1 / (2 * M_PI * sqrt((*L) * (*C)));
 }
