@@ -6,6 +6,8 @@
         "scminput": false
     },
     "files.associations": {
-        "calc.h": "c"
+        "calc.h": "c",
+        "lib.h": "c",
+        "stdio.h": "c"
     }
 }
