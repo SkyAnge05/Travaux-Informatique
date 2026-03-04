@@ -9,7 +9,7 @@ int main() {
     /*la veleur de p est l'adresse de x, donc 0x%x*/
 
     scanf("%d", p); /* lectrure de la valeur de x au clavier*/
-    printf("%d", x); /*affichage de la nouvelle valeur de x*/
+    printf("\n %d", x); /*affichage de la nouvelle valeur de x*/
 /*va a ladresse ou ce trouve la variable x et depose ce que je te mets au clavier*/
 
     return 0;
