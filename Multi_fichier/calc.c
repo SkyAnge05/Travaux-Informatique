@@ -6,5 +6,6 @@ int carre(int x)
 int res;
 res= x*x;
 
-return res;
-}
+
+
+}nreturn res;

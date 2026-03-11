@@ -9,13 +9,14 @@ Editeur: Nelen Nathan
 int main()
 {
 
-int x;
 
-printf("Taper un nombre entier ");
-scanf("%d", &x);
 
-printf("\n Le carré de %d est %d.\n", x, carre(x));
+
+
 
 
 
 }
+n
+nprintf("\n Le carré de %d est %d.\n", x, carre(x));scanf("%d", &x);
+nprintf("Taper un nombre entier ");nint x;
