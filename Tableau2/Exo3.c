@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main()
 {
 
   int i;
   int n;
+  srand(time(NULL));
 
   printf("Introduisez le nombre diteration que vous voulez faire : ");
   scanf("%d",&n);
@@ -14,8 +16,9 @@ int main()
 
   for(i=1; i<n; i++)
   {
-     printf("\nIntruduiser les valeurs %d du tableau : ",i);
-     scanf("%d",&tableau[i]);
+    /* printf("\nIntruduiser les valeurs %d du tableau : ",i);
+     scanf("%d",&tableau[i]);*/
+        tableau[i] = rand() % 100;
   }
 
 printf("Parfait !");
