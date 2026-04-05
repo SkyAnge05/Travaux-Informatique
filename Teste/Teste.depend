@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1774431564 source:/home/nelen-nathan/Documents/teste1/Teste/main.c
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+
