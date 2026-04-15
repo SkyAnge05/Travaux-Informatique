@@ -14,7 +14,7 @@ int main()
     
     for (count = 0; count < MAX; count++)
     {
-        printf("Entrez une valeur entière : ");
+        printf("\ntrez une valeur entière : ");
         scanf("%d", &tab[count]);
     }
     
