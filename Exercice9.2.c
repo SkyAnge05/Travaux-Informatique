@@ -39,7 +39,9 @@ printf("Bonjour et bienvenue le programme de gestion de stock de composants info
 
 struct produit p1;
 printf("Veuillez rentre la référence de produit que vous souhaitez ajouter au panier parmis les choix: ");
-printf("\n 1: Processeur");
+printf("\n 1: Processeur \n 2: Carte Graphique \n 3: RAM \n 4: Disque Dur \n");
+scanf("%d", &p1.ref);
+
 
 
 }
