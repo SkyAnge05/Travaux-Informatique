@@ -1,30 +1,47 @@
     /*Cours d'informatique 2*/
     /*Date 20/04/2026*/
     /*Réalisé par Peeters Xavier et Nelen Nathan*/
+
 //*--------------------------Inclusion des bibliothèques------------------------------*
     #include <stdio.h>
     #include <stdlib.h>
     #include <locale.h>
+
 //*--------------------------Définition des constantes------------------------------*
     #define MAX_SYMPTOMES 11
     #define MAX_PANNES 11
     #define MAX_VERIFS 9
     #define MAX_SOLUTIONS 10
+
+/*"typedef" permet d'écrire Panne au lieu de struct Panne*/
+    typedef struct {
+        int score;
+    }Panne;
+
+ Panne panne[MAX_PANNES];
+
+//*--------------------------Prototypage des fonctions------------------------------*
+void diagnostique(int symptomes[]);
+void afficher_historique();
+void calculeur_de_score(int symptomes[], Panne panne[], int matrice[MAX_SYMPTOMES][MAX_PANNES]);
+
 //*---------Matrice de score qui fait correspondre les symptômes aux pannes----------*
-int matrice[MAX_SYMPTOMES][MAX_PANNES] = 
-{
-    {2, 2, 0, 0, 0, 1, 0, 0, 0, 0},  // 1. S'allume pas
-    {0, 0, 2, 0, 1, 0, 0, 2, 0, 0},  // 2. Odeur brulé
-    {0, 0, 0, 0, 1, 0, 0, 1, 0, 0},  // 3. Bruit anormal
-    {1, 0, 0, 0, 0, 0, 1, 1, 2, 0},  // 4. Ecran noir
-    {0, 0, 0, 0, 0, 0, 1, 0, 1, 0},  // 5. LED allumée
-    {0, 0, 1, 2, 0, 0, 0, 0, 0, 0},  // 6. Chaud
-    {0, 0, 0, 1, 1, 0, 0, 1, 0, 2},  // 7. Plante
-    {2, 1, 0, 0, 0, 1, 0, 0, 0, 0},  // 8. Pas de tension
-    {0, 0, 1, 0, 0, 2, 0, 0, 0, 0},  // 9. Batterie gonflée
-    {1, 0, 0, 0, 0, 2, 0, 0, 0, 0},  // 10. Chargeur HS
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}   // 11. (réservé)
+// matrice[symptome][panne] = points ajoutés
+// 11 symptomes x 11 pannes
+int matrice[MAX_SYMPTOMES][MAX_PANNES] = {
+    /* S'allume pas  */ {2, 2, 0, 0, 0, 1, 0, 0, 1, 1, 2},
+    /* Odeur brulé   */ {0, 0, 2, 0, 1, 0, 0, 2, 1, 1, 2},
+    /* Bruit anormal */ {0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 2},
+    /* Ecran noir    */ {1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2},
+    /* LED allumée   */ {0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 2},
+    /* Chaud         */ {0, 0, 1, 2, 0, 0, 0, 0, 1, 1, 2},
+    /* Plante        */ {0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 2},
+    /* Pas tension   */ {2, 1, 0, 0, 0, 1, 0, 0, 1, 1, 2},
+    /* Batterie gonf */ {0, 0, 1, 0, 0, 2, 0, 0, 1, 1, 2},
+    /* Chargeur HS   */ {1, 0, 0, 0, 0, 2, 0, 0, 1, 1, 2},
+    /* (reserve)     */ {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 };
+
 
     int main ()
     {
@@ -32,6 +49,7 @@ int matrice[MAX_SYMPTOMES][MAX_PANNES] =
     int symptomes[MAX_SYMPTOMES]; // tableau pour stocker les réponses des symptômes
     int choix; // sert pour le menu
     int score_panne[MAX_PANNES];// Tabk-leau de 10 score, un par pannes
+
 
     /* un type const pour ne jamais modifié les chaines de caractères*/
     /* char* char pointeur pour pointer vers une chaîne de caractères */
@@ -48,7 +66,7 @@ int matrice[MAX_SYMPTOMES][MAX_PANNES] =
     "Ecran defectueux",         // 8
     "Probleme logiciel",        // 9
     "Présence d'humidité"       // 10
-};
+    };
 
     
     const char* noms_verifs[MAX_VERIFS] = 
@@ -64,6 +82,7 @@ int matrice[MAX_SYMPTOMES][MAX_PANNES] =
     "Vérifier les ampli entrée de charge"
     };
 
+
     const char* solutions[MAX_SOLUTIONS] = 
     {
     "Remplacer le bloc d'alimentation ou le câble d'alimentation défectueux",
@@ -75,6 +94,8 @@ int matrice[MAX_SYMPTOMES][MAX_PANNES] =
     "Nettoyer les connecteurs à l'alcool isopropylique, re-sertir ou resoler les connexions défectueuses",
     "Inspecter visuellement les pistes et soudures, réparer les pistes rompues ou remplacer la carte si irréparable"
     };
+
+
 //*--------------------------Teste------------------------------*
 
     for (int i = 0; i < MAX_PANNES; i++) {
@@ -90,6 +111,7 @@ int matrice[MAX_SYMPTOMES][MAX_PANNES] =
         printf("%d. %s\n", i+1, solutions[i]);
     }
 //*--------------------------Teste------------------------------*
+
 
 //*--------------------Début du programme-----------------------*
     printf("\n\nBienvenue dans le programme de diagnostique de panne\n\n");
@@ -120,6 +142,7 @@ int matrice[MAX_SYMPTOMES][MAX_PANNES] =
     return EXIT_SUCCESS;
 }
 
+//*--------------------fonction pour n'accepter que oui ou non-----------------------*
 int lire_oui_non() {
     int x;
     do {
@@ -131,6 +154,8 @@ int lire_oui_non() {
     return x;
 }
 
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-DIAGNOSTIQUE-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+//*--------------------Fonction pour poser les questions et stocker les réponses-----------------------*
 void diagnostique(int symptomes[]) {
     for (int i = 0; i < MAX_SYMPTOMES; i++) {
         symptomes[i] = 0; // Initialiser tous les symptômes à 0
@@ -139,7 +164,7 @@ void diagnostique(int symptomes[]) {
     printf("----------Diagnostique---------- \n");
     printf("Oui tapper 1, non taper 0 \n\n");
 
-    printf("1. S'allume \n");
+    printf("1. il s'allume ? \n");
     symptomes[0] = lire_oui_non();
 
     printf("2. Une odeur de brulé ? \n");
@@ -174,40 +199,32 @@ void diagnostique(int symptomes[]) {
 
     printf("\nDiagnostique terminé.\n\n");
 }
-
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Panne panne[]-*-HISTORIQUE-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 void afficher_historique() {
+    printf("----------Historique---------- \n");
     printf("Historique des diagnostics : \n");
     // Afficher l'historique des diagnostics ici (à implémenter)
     printf("Aucun diagnostic enregistré pour le moment.\n\n");
 }
 
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-SCORE-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+void calculeur_de_score(int symptomes[], Panne panne[],int matrice[MAX_SYMPTOMES][MAX_PANNES]) {
+/* Remettre tout a 0 */
+for (int i = 0; i< MAX_PANNES; i++)
+{
+    panne[i].score = 0; // Chaque score du tableau score
+}
+//Après ça tout est remis à 0
 
-    /*
-    1. Lister les pannes possible :  :
-    
-    -s'allume
-    -odeur de brulé
-    -bruit anormal 
-    -écran noir
-    -led allumée ?
-    -Chaud ?
-    -est ce qu'il plante ?
-    -est ce qu'il y a de la tension ?
-    -est ce que la batterie est gonflée ?
-    -est ce que le chargeur fonctionne ?
+    for(int s = 0; s < MAX_SYMPTOMES; s++)
+    {
+        if(symptomes[s] == 1)
+        {
+            for(int p = 0; p < MAX_PANNES; p++)
+            {   
+            panne[p].score += matrice[s][p];
+            }
 
-    2. les pannes possibles
-    -alimentation HS
-    -fusible grillé
-    -court-circuit
-    -surchaufe
-    -composant défectueux
-    -batterie HS
-    -mauvais contacte
-    -carte mère endommagée
-
-    3. Vericifation conseillée :
-    -redémarrer l'ordinateur
-    -vérifier les connexions
-    -mesuré la tesion de la batterie 
-    */
+        }
+    }
+}
