@@ -1,1 +1,2 @@
-printf("Nique ta mère enculé j'ai dit soit 1 soit 0. Tapez 1 (oui) ou 0 (non): ");
+
+        printf("\n");
