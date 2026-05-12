@@ -1,10 +1,13 @@
-/* ___________________________________________________________________________________*/    
-/*|                                                                                   |*/
-/*|  Cours d'informatique Q2                                                          |*/
-/*|  Date de début : 20/04/2026                                                       |*/
-/*|  Date de fin :                                                                    |*/
-/*|  Réalisé par Peeters Xavier et Nelen Nathan                                       |*/
-/*|___________________________________________________________________________________|*/
+/*
+ ___________________________________________________________________________________  
+|                                                                                   |
+|  Cours d'informatique Q2                                                          |
+|  Date de début : 20/04/2026                                                       |
+|  Date de fin :   12/05/2026                                                       |
+|  Réalisé par Peeters Xavier et Nelen Nathan                                       |
+|___________________________________________________________________________________|
+
+*/
 
 //*--------------------------Inclusion des bibliothèques------------------------------*
     #include <stdio.h>
@@ -15,8 +18,7 @@
     #define MAX_SYMPTOMES 11
     #define MAX_PANNES 11
     #define MAX_VERIFS 9
-    #define MAX_SOLUTIONS 11
-    #define SCORE_MAX 11
+    #define MAX_SOLUTIONS 10
     #define HISTORIQUE_SIZE 5
 
 /*
@@ -44,6 +46,7 @@
  int nb_diagnostique = 0;
 
 //*--------------------------Prototypage des fonctions------------------------------*
+int lire_oui_non();
 void diagnostique(int symptomes[]);
 void afficher_historique();
 void enregistrer_historique(const char* noms_pannes[]);
@@ -381,11 +384,11 @@ printf("\nPanne détectée : %s", noms_pannes[indice_max]);
 
 // Classifier le niveau d'urgence en fonction du score total
 // Plus le score est élevé, plus la panne est grave
-if(max <= 3)
+if(max <= 5)
     {
         printf("\nNiveau d'urgence : FAIBLE");
     }
-else if (max <= 6)
+else if (max <= 10)
         {
         printf("\nNiveau d'urgence : MOYEN");
         }
