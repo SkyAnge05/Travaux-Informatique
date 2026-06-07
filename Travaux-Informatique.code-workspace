@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "Creation_Personel",
+			"path": "../Creation_Personel"
+		}
+	],
+	"settings": {
+		"github.copilot.enable": {
+			"*": false,
+			"plaintext": false,
+			"markdown": false,
+			"scminput": false,
+			"c": false
+		},
+		"files.associations": {
+			"calc.h": "c",
+			"lib.h": "c",
+			"stdio.h": "c"
+		}
+	}
+}
