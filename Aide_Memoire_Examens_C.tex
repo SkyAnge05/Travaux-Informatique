@@ -1,0 +1,417 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf-8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Configuration des marges
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+% Configuration des en-têtes et pieds de page
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textbf{Aide-mémoire C}}
+\lhead{2025-2026}
+\cfoot{\thepage}
+
+% Configuration du code C
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    breaklines=true,
+    showstringspaces=false,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    tabsize=4
+}
+
+\title{\textbf{Aide-mémoire pour l'examen C}}
+\author{Nelen Nathan}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Bases essentielles de C}
+
+\subsection{Entrées et sorties}
+
+\begin{lstlisting}
+#include <stdio.h>
+
+// Affichage
+printf("Message : %d\n", valeur);
+printf("Texte : %s\n", chaine);
+
+// Lecture
+scanf("%d", &entier);
+scanf("%f", &reel);
+scanf("%s", tableau_char);
+\end{lstlisting}
+
+\textbf{Formats courants :}
+\begin{itemize}
+    \item \texttt{\%d} : entier
+    \item \texttt{\%f} : nombre décimal
+    \item \texttt{\%s} : chaîne de caractères
+    \item \texttt{\%p} : adresse (pointeur)
+\end{itemize}
+
+\subsection{Déclaration de variables}
+
+\begin{lstlisting}
+int nombre = 5;
+float reel = 3.14;
+char caractere = 'A';
+char chaine[] = "Bonjour";
+\end{lstlisting}
+
+\section{Pointeurs}
+
+\subsection{Concept fondamental}
+
+Un pointeur est une \textbf{variable qui stocke l'adresse mémoire} d'une autre variable.
+
+\begin{lstlisting}
+int x = 5;
+int *ptr = &x;    // ptr contient l'adresse de x
+
+printf("%d\n", x);      // affiche 5
+printf("%d\n", *ptr);   // affiche 5 (valeur pointée)
+printf("%p\n", ptr);    // affiche l'adresse de x
+\end{lstlisting}
+
+\subsection{Règles essentielles}
+
+\begin{itemize}
+    \item \textbf{\texttt{\&x}} : adresse de la variable \texttt{x}
+    \item \textbf{\texttt{*ptr}} : valeur stockée à l'adresse contenue dans \texttt{ptr}
+    \item \textbf{\texttt{int *p}} : déclare un pointeur vers un entier
+\end{itemize}
+
+\subsection{Modifier une valeur via un pointeur}
+
+\begin{lstlisting}
+int x = 10;
+int *p = &x;
+
+*p = 20;  // Modifie x à travers p
+printf("%d\n", x);  // affiche 20
+\end{lstlisting}
+
+\section{Fonctions}
+
+\subsection{Syntaxe générale}
+
+\begin{lstlisting}
+// Déclaration (prototype)
+type nom_fonction(parametres);
+
+// Définition
+type nom_fonction(parametres) {
+    // code
+    return valeur;
+}
+
+// Appel dans main
+int main() {
+    nom_fonction(arguments);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Passage par valeur vs pointeur}
+
+\begin{lstlisting}
+// Passage par valeur (ne modifie pas l'original)
+void modifier_valeur(int x) {
+    x = 100;
+}
+
+// Passage par pointeur (modifie l'original)
+void modifier_pointeur(int *p) {
+    *p = 100;
+}
+
+// Utilisation
+int main() {
+    int a = 5;
+    
+    modifier_valeur(a);      // a reste 5
+    modifier_pointeur(&a);   // a devient 100
+    
+    return 0;
+}
+\end{lstlisting}
+
+\section{Fonctions récurrentes dans vos exercices}
+
+\subsection{Somme et Produit d'un tableau}
+
+Fichier : \texttt{Labo\_Tableau-Pointeur/Exercice\_Tableau-Pointeur.c}
+
+\begin{lstlisting}
+void sommeEtProduit(int *tab, int taille, 
+                    int *somme, int *produit) {
+    *somme = 0;
+    *produit = 1;
+    
+    for (int i = 0; i < taille; i++) {
+        *somme += tab[i];
+        *produit *= tab[i];
+    }
+}
+
+// Appel dans main
+int main() {
+    int tab[] = {1, 2, 3, 4, 5};
+    int somme, produit;
+    
+    sommeEtProduit(tab, 5, &somme, &produit);
+    printf("Somme = %d\n", somme);
+    printf("Produit = %d\n", produit);
+    
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Échange de deux valeurs}
+
+Fichier : \texttt{Pointeur/1-Pointeur/Exercice\_Pointeur.c}
+
+\begin{lstlisting}
+void echange(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Utilisation
+int main() {
+    int x = 5, y = 10;
+    
+    echange(&x, &y);
+    printf("x = %d, y = %d\n", x, y);  // x = 10, y = 5
+    
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Logarithme népérien}
+
+Fichier : \texttt{Labo\_Fonction/main.c}
+
+\begin{lstlisting}
+float LogNeperien(float x, float n) {
+    float lnX = 0, exposant, lnProvisoire;
+    
+    exposant = 1;
+    for (int i = 1; i <= n; i++) {
+        lnProvisoire = pow((x-1)/(x+1), exposant);
+        lnProvisoire *= 1/exposant;
+        lnX += lnProvisoire;
+        exposant += 2;
+    }
+    
+    return lnX * 2;
+}
+\end{lstlisting}
+
+\section{Tableaux}
+
+\subsection{Déclaration et initialisation}
+
+\begin{lstlisting}
+// Tableau vide (taille fixe)
+int tab1[10];
+
+// Tableau initialisé
+int tab2[] = {1, 2, 3, 4, 5};
+int tab3[5] = {1, 2, 3, 4, 5};
+
+// Tableau multidimensionnel
+int matrice[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+// Chaîne de caractères (tableau de char)
+char chaine[] = "Bonjour";
+\end{lstlisting}
+
+\subsection{Accès et modification}
+
+\begin{lstlisting}
+int tab[] = {10, 20, 30};
+
+tab[0] = 10;  // Accès par indice
+printf("%d\n", tab[1]);  // affiche 20
+
+int *ptr = tab;  // Pointeur sur le tableau
+printf("%d\n", *ptr);     // affiche 10
+printf("%d\n", *(ptr+1)); // affiche 20
+\end{lstlisting}
+
+\subsection{Passage de tableau à une fonction}
+
+\begin{lstlisting}
+void afficher_tableau(int tab[], int taille) {
+    for (int i = 0; i < taille; i++) {
+        printf("%d ", tab[i]);
+    }
+    printf("\n");
+}
+
+// Appel
+int main() {
+    int tab[] = {1, 2, 3, 4, 5};
+    afficher_tableau(tab, 5);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Structures}
+
+\subsection{Déclaration et utilisation}
+
+\begin{lstlisting}
+// Déclaration
+struct Personne {
+    int age;
+    char nom[30];
+    float taille;
+};
+
+// Utilisation dans main
+int main() {
+    struct Personne p1;
+    p1.age = 25;
+    strcpy(p1.nom, "Alice");
+    p1.taille = 1.70;
+    
+    printf("Age : %d\n", p1.age);
+    printf("Nom : %s\n", p1.nom);
+    
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Tableau de structures}
+
+\begin{lstlisting}
+struct Personne personnes[3];
+
+personnes[0].age = 25;
+strcpy(personnes[0].nom, "Alice");
+\end{lstlisting}
+
+\section{Boucles et conditionnelles}
+
+\subsection{Boucles}
+
+\begin{lstlisting}
+// Boucle for
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i);
+}
+
+// Boucle while
+int i = 0;
+while (i < 10) {
+    printf("%d\n", i);
+    i++;
+}
+
+// Boucle do-while
+int j = 0;
+do {
+    printf("%d\n", j);
+    j++;
+} while (j < 10);
+\end{lstlisting}
+
+\subsection{Conditions}
+
+\begin{lstlisting}
+if (age >= 18) {
+    printf("Majeur\n");
+} else if (age >= 13) {
+    printf("Adolescent\n");
+} else {
+    printf("Enfant\n");
+}
+
+// Switch
+switch (choix) {
+    case 1:
+        printf("Option 1\n");
+        break;
+    case 2:
+        printf("Option 2\n");
+        break;
+    default:
+        printf("Option invalide\n");
+}
+\end{lstlisting}
+
+\section{Opérateurs importants}
+
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Opérateur} & \textbf{Description} & \textbf{Exemple} \\
+\hline
+\texttt{+} & Addition & \texttt{a + b} \\
+\texttt{-} & Soustraction & \texttt{a - b} \\
+\texttt{*} & Multiplication & \texttt{a * b} \\
+\texttt{/} & Division & \texttt{a / b} \\
+\texttt{\%} & Modulo & \texttt{a \% b} \\
+\hline
+\texttt{==} & Égal & \texttt{a == b} \\
+\texttt{!=} & Différent & \texttt{a != b} \\
+\texttt{<} & Inférieur & \texttt{a < b} \\
+\texttt{>} & Supérieur & \texttt{a > b} \\
+\hline
+\texttt{\&\&} & ET logique & \texttt{a \&\& b} \\
+\texttt{||} & OU logique & \texttt{a || b} \\
+\texttt{!} & NON logique & \texttt{!a} \\
+\hline
+\end{tabular}
+
+\section{Conseils d'examen}
+
+\begin{enumerate}
+    \item \textbf{Déclarez les fonctions avant \texttt{main()}}
+    \item \textbf{N'oubliez pas le \texttt{\&}} avec \texttt{scanf}
+    \item \textbf{Attention aux pointeurs} : \texttt{\&x} vs \texttt{*p}
+    \item \textbf{Initialisez les variables} avant utilisation
+    \item \textbf{Nommez les fonctions} clairement et logiquement
+    \item \textbf{Testez avec des valeurs simples} pour déboguer
+    \item \textbf{Compilez souvent} pour détecter les erreurs tôt
+\end{enumerate}
+
+\section{Checklist finale}
+
+\begin{itemize}
+    \item[\checkmark] Inclusion des headers (\texttt{\#include <stdio.h>}, etc.)
+    \item[\checkmark] Prototype des fonctions avant \texttt{main}
+    \item[\checkmark] Pointeurs correctement déclarés avec \texttt{*}
+    \item[\checkmark] Paramètres passés correctement (\texttt{\&} ou adresse)
+    \item[\checkmark] Pas de variables non initialisées
+    \item[\checkmark] Boucles et conditions correctement écrites
+    \item[\checkmark] \texttt{return 0;} à la fin de \texttt{main}
+\end{itemize}
+
+\end{document}
